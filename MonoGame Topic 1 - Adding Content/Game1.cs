@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 
 namespace MonoGame_Topic_1___Adding_Content
@@ -19,7 +20,8 @@ namespace MonoGame_Topic_1___Adding_Content
         Texture2D zombieTexture;
         Texture2D moonTexture;
         Texture2D ghostTexture;
-        private int whichPicture;
+        private int whichPicture, ghostX, ghostY;
+        
 
         public Game1()
         {
@@ -38,6 +40,8 @@ namespace MonoGame_Topic_1___Adding_Content
 
             Random generator = new Random();
             whichPicture = generator.Next(2);
+            ghostX = generator.Next(850 - 129);
+            ghostY = generator.Next(485 - 150);
             this.Window.Title = "First MonoGame Project";
 
 
@@ -56,6 +60,7 @@ namespace MonoGame_Topic_1___Adding_Content
             zombieTexture = Content.Load<Texture2D>("zombie");
             moonTexture = Content.Load<Texture2D>("moon");
             ghostTexture = Content.Load<Texture2D>("ghost");
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -87,10 +92,11 @@ namespace MonoGame_Topic_1___Adding_Content
             }
             else if (whichPicture == 1) //Halloween
             {
+
                 _spriteBatch.Draw(halloweenTexture, new Vector2(0, 0), Color.White);
                 _spriteBatch.Draw(zombieTexture, new Vector2(755, 265), Color.White);
                 _spriteBatch.Draw(moonTexture, new Vector2(40, -25), Color.White);
-                _spriteBatch.Draw(ghostTexture, new Vector2(400, 55), Color.White);
+                _spriteBatch.Draw(ghostTexture, new Vector2(ghostX, ghostY), Color.White);
             }
             _spriteBatch.End();
 
